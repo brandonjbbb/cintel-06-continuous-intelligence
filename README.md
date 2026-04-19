@@ -50,7 +50,7 @@ in earlier modules into a simple continuous intelligence pipeline:
 
 The example pipeline reads system metrics from:
 
-`data/system_metrics_case.csv`
+`data/system_metrics_brandon.csv`
 
 Each row represents one observation of system activity.
 
@@ -119,7 +119,7 @@ open a machine terminal in your `Repos` folder:
 
 ```shell
 # Replace username with YOUR GitHub username.
-git clone https://github.com/username/cintel-06-continuous-intelligence
+git clone https://github.com/brandonjbbb/cintel-06-continuous-intelligence
 
 cd cintel-06-continuous-intelligence
 code .
