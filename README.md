@@ -44,38 +44,60 @@ in earlier modules into a simple continuous intelligence pipeline:
 - Module 3. signal design
 - Module 4. rolling monitoring
 - Module 5. drift comparison
-- Module 6. system assessment (integration).
+- Module 6. system assessment (integration)
+
+## My Modification
+
+I modified the project by creating my own Brandon versions of the example files and updating the pipeline to use my renamed dataset and Python module.
+
+I changed the input file to `data/system_metrics_brandon.csv`, changed the output file to `artifacts/system_assessment_brandon.csv`, and renamed the source file to `src/cintel/continuous_intelligence_brandon.py`.
+
+I also added a new derived metric called `successful_requests`, which is calculated as requests minus errors.
+
+I made this change to better understand how small modifications to a continuous intelligence pipeline affect the logic, summary output, and final assessment.
+
+After running the modified project, I observed that the pipeline executed successfully, created the artifacts folder when needed, and produced an updated summary file with my additional metric.
 
 ## Data
 
-The example pipeline reads system metrics from:
+The modified pipeline reads system metrics from:
 
 `data/system_metrics_brandon.csv`
 
 Each row represents one observation of system activity.
 
-The pipeline derives signals such as
-**error rate** and **average latency**,
-checks for anomalous conditions,
-and produces a summary assessment of system behavior.
+The pipeline derives signals such as:
 
-The dataset includes a short period of degraded performance
-so that monitoring signals and anomaly detection
-produce visible results.
+- **error_rate**
+- **avg_latency_ms**
+- **successful_requests**
+
+It checks for anomalous conditions and produces a summary assessment of system behavior.
+
+The dataset includes a short period of degraded performance so that monitoring signals and anomaly detection produce visible results.
+
+## Output
+
+The modified pipeline writes its final summary to:
+
+`artifacts/system_assessment_brandon.csv`
+
+This output file includes summary metrics for the system and a final `system_state` label showing whether the system is assessed as `STABLE` or `DEGRADED`.
 
 ## Working Files
 
 You'll work with just these areas:
 
-- **data/** - it starts with the data
-- **docs/** - tell the story
-- **src/cintel/** - where the magic happens
-- **pyproject.toml** - update authorship & links
-- **zensical.toml** - update authorship & links
+- **data/** - input data files
+- **docs/** - project documentation
+- **src/cintel/** - source code for the pipeline
+- **artifacts/** - generated output files
+- **pyproject.toml** - authorship and project configuration
+- **zensical.toml** - authorship and project links
 
 ## Instructions
 
-Follow the [step-by-step workflow guide](https://denisecase.github.io/pro-analytics-02/workflow-b-apply-example-project/) to complete:
+Follow the workflow guide to complete:
 
 1. Phase 1. **Start & Run**
 2. Phase 2. **Change Authorship**
@@ -86,73 +108,15 @@ Follow the [step-by-step workflow guide](https://denisecase.github.io/pro-analyt
 ## Challenges
 
 Challenges are expected.
-Sometimes instructions may not quite match your operating system.
+Sometimes instructions may not exactly match your operating system or environment.
 When issues occur, share screenshots, error messages, and details about what you tried.
 Working through issues is part of implementing professional projects.
 
 ## Success
 
-After completing Phase 1. **Start & Run**, you'll have your own GitHub project, running on your machine, and running the example will print out:
+After completing the setup and modification steps, the project should run successfully and print:
 
 ```shell
 ========================
 Pipeline executed successfully!
 ========================
-```
-
-And a new file named `project.log` will appear in the project folder.
-
-## Command Reference
-
-The commands below are used in the workflow guide above.
-They are provided here for convenience.
-
-Follow the guide for the **full instructions**.
-
-<details>
-<summary>Show command reference</summary>
-
-### In a machine terminal (open in your `Repos` folder)
-
-After you get a copy of this repo in your own GitHub account,
-open a machine terminal in your `Repos` folder:
-
-```shell
-# Replace username with YOUR GitHub username.
-git clone https://github.com/brandonjbbb/cintel-06-continuous-intelligence
-
-cd cintel-06-continuous-intelligence
-code .
-```
-
-### In a VS Code terminal
-
-```shell
-uv self update
-uv python pin 3.14
-uv sync --extra dev --extra docs --upgrade
-
-uvx pre-commit install
-git add -A
-uvx pre-commit run --all-files
-# repeat if changes were made
-git add -A
-uvx pre-commit run --all-files
-
-uv run python -m cintel.continuous_intelligence_case
-
-uv run ruff format .
-uv run ruff check . --fix
-uv run zensical build
-
-git add -A
-git commit -m "update"
-git push -u origin main
-```
-
-</details>
-
-## Notes
-
-- Use the **UP ARROW** and **DOWN ARROW** in the terminal to scroll through past commands.
-- Use `CTRL+f` to find (and replace) text within a file.
